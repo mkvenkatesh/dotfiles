@@ -1,0 +1,10 @@
+.DS_Store
+/.gitconfig
+/README_NO_GIT.md
+/ssh.zip.gpg
+/.emacs.d/bookmarks
+/.emacs.d/auto-save-list/
+/.emacs.d/custom-el/
+/.emacs.d/elpa.bak/
+/.emacs.d/elpa/
+/.emacs.d/sqlplus/
