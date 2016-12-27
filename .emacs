@@ -19,7 +19,6 @@
 (setq sml/theme 'light-powerline)
 (sml/setup)
 
-
 ;; flyspell configuration
 ; turn on automatic spell check for text/prog modes
 (add-hook 'text-mode-hook 'flyspell-mode)
@@ -77,7 +76,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; set few other shortcuts
 (global-set-key (kbd "C-c z") 'reveal-in-osx-finder)
-(global-set-key (kbd "C-c n") 'neotree-toggle)
+(global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-x g") 'magit-status)
