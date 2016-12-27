@@ -209,6 +209,10 @@ point reaches the beginning or end of the buffer, stop there."
 ;; enable restclient-mode for .http files
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
+;; ace-jump-mode configuration
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
 ;;
 
 ;; M-x customize auto-generated code below
@@ -244,7 +248,7 @@ point reaches the beginning or end of the buffer, stop there."
  '(neo-smart-open t)
  '(package-selected-packages
    (quote
-	(company-restclient restclient js-comint multiple-cursors expand-region undo-tree pbcopy smooth-scrolling unfill flycheck elpy company-tern web-beautify company-web company yasnippet web-mode magit smex smart-mode-line-powerline-theme reveal-in-osx-finder neotree markdown-mode)))
+	(ace-jump-mode company-restclient restclient js-comint multiple-cursors expand-region undo-tree pbcopy smooth-scrolling unfill flycheck elpy company-tern web-beautify company-web company yasnippet web-mode magit smex smart-mode-line-powerline-theme reveal-in-osx-finder neotree markdown-mode)))
  '(show-paren-mode t)
  '(tab-width 4)
  '(version-control t)

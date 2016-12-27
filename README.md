@@ -65,6 +65,7 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 
 ### ELPA Packages
 
+* ace-jump-mode
 * company
 * company-restclient
 * company-tern
