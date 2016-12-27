@@ -49,3 +49,6 @@ eval "$(rbenv init -)"
 
 # init bash-completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+# pyenv configuration
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
