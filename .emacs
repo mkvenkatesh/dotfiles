@@ -106,8 +106,10 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'inferior-js-mode-hook 'inferior-js-mode-hook-setup t)
 
 ;; company mode configuration
-; company-tern configuration
 (require 'company)
+; add company-restclient to company backends
+(add-to-list 'company-backends 'company-restclient)
+; company-tern configuration
 (add-to-list 'company-backends 'company-tern)
 (setq company-tern-property-marker "")
 (setq company-tern-meta-as-single-line t)
@@ -204,6 +206,9 @@ point reaches the beginning or end of the buffer, stop there."
 ; rename SQL buffers automatically
 (add-hook 'sql-interactive-mode-hook 'sql-rename-buffer)
 
+;; enable restclient-mode for .http files
+(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
+
 ;;
 
 ;; M-x customize auto-generated code below
@@ -239,7 +244,7 @@ point reaches the beginning or end of the buffer, stop there."
  '(neo-smart-open t)
  '(package-selected-packages
    (quote
-	(js-comint multiple-cursors expand-region undo-tree pbcopy smooth-scrolling unfill flycheck elpy company-tern web-beautify company-web company yasnippet web-mode magit smex smart-mode-line-powerline-theme reveal-in-osx-finder neotree markdown-mode)))
+	(company-restclient restclient js-comint multiple-cursors expand-region undo-tree pbcopy smooth-scrolling unfill flycheck elpy company-tern web-beautify company-web company yasnippet web-mode magit smex smart-mode-line-powerline-theme reveal-in-osx-finder neotree markdown-mode)))
  '(show-paren-mode t)
  '(tab-width 4)
  '(version-control t)

@@ -66,6 +66,7 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 ### ELPA Packages
 
 * company
+* company-restclient
 * company-tern
 * company-web
 * elpy
@@ -77,6 +78,7 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * multiple-cursors
 * neotree
 * pbcopy
+* restclient
 * reveal-in-osx-finder
 * smart-mode-line
 * smart-mode-line-powerline-theme
