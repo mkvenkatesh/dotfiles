@@ -71,17 +71,17 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>683 160 542 98 0 0 1280 777 </string>
+	<string>672 90 542 77 0 0 1280 777 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>330 307 620 392 0 0 1280 800 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1280 777 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>156 162 918 495 0 0 1280 777 </string>
+	<string>125 180 918 498 0 0 1280 777 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>80 193 592 584 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1280 800 0 0 1280 777 </string>
+	<string>1084 74 650 477 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>152 50 650 477 0 0 1280 777 </string>
 	<key>NeverWarnAboutMeta</key>
@@ -269,6 +269,8 @@
 				<key>Red Component</key>
 				<real>1</real>
 			</dict>
+			<key>Blend</key>
+			<real>0.46270032051282056</real>
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
@@ -667,6 +669,8 @@
 			<true/>
 			<key>Normal Font</key>
 			<string>SourceCodePro-Regular 14</string>
+			<key>Only The Default BG Color Uses Transparency</key>
+			<false/>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -712,7 +716,7 @@
 			<key>Thin Strokes</key>
 			<integer>0</integer>
 			<key>Transparency</key>
-			<real>0.2611339681952663</real>
+			<real>0.0</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
@@ -1374,7 +1378,7 @@
 			<key>Thin Strokes</key>
 			<integer>0</integer>
 			<key>Transparency</key>
-			<real>0.25204326923076925</real>
+			<real>0.0</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
@@ -2040,7 +2044,7 @@
 			<key>Thin Strokes</key>
 			<integer>0</integer>
 			<key>Transparency</key>
-			<real>0.25462278106508879</real>
+			<real>0.0</real>
 			<key>Unlimited Scrollback</key>
 			<true/>
 			<key>Use Bold Font</key>
@@ -2131,7 +2135,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-12-25T18:14:37Z</date>
+	<date>2016-12-27T18:29:44Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>Secure Input</key>
@@ -2141,7 +2145,7 @@
 	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.21797125400641032</real>
+	<real>0.17097105368589749</real>
 	<key>SuppressRestartAnnouncement</key>
 	<true/>
 	<key>TabStyle</key>
