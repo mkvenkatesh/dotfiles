@@ -65,12 +65,15 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 
 ### ELPA Packages
 
-* ace-jump-mode
+* ace-window
+* avy
+* backup-walker
 * company
 * company-restclient
 * company-tern
 * company-web
 * elpy
+* exec-path-from-shell
 * expand-region
 * flycheck
 * js-comint
@@ -82,7 +85,6 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * restclient
 * reveal-in-osx-finder
 * smart-mode-line
-* smart-mode-line-powerline-theme
 * smooth-scrolling
 * smex
 * tern

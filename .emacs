@@ -11,25 +11,82 @@
 (add-to-list
  'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
+
+;; use Solarized-dark as default theme
+(when (display-graphic-p)
+  (customize-set-variable 'frame-background-mode 'dark)
+  (load-theme 'solarized-dark t))
+
+
+;; switch between Solarized dark and light theme
+(defun set-solarized-light ()
+  (interactive)
+  (customize-set-variable 'frame-background-mode 'light)
+  (load-theme 'solarized-light t))
+
+(defun set-solarized-dark ()
+  (interactive)
+  (customize-set-variable 'frame-background-mode 'dark)
+  (load-theme 'solarized-dark t))
+
+(defun toggle-solarized-theme ()
+     "Toggle between Solarized light/dark color scheme."
+    (interactive)
+    (if (eq frame-background-mode 'dark)
+          (set-solarized-light)
+      (set-solarized-dark)))
+
+(global-set-key (kbd "<f12>") 'toggle-solarized-theme)
+
+
+;; set frame title
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+
+
+;; initialize exec-path-from-shell to copy environment variables
+;; properly to Emacs windows app
+(when (display-graphic-p)
+  (exec-path-from-shell-initialize))
+
+
+;; Run code below only for OS X
+(if (eq system-type 'darwin)
+	;; use gls from coreutils rather than Mac's ls command for dired mode
+	(setq insert-directory-program (executable-find "gls")))
+
+
 ;; add custom-el to load path
 (add-to-list 'load-path "~/.emacs.d/custom-el/")
 
+
+;; additional hooks
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+
 ;; activate smart-mode-line
 (setq sml/no-confirm-load-theme t)
-(setq sml/theme 'light-powerline)
+(setq sml/theme 'respectful)
 (sml/setup)
 
-;; flyspell configuration
-; turn on automatic spell check for text/prog modes
+
+;; flyspell configuration - turn on automatic spell check for
+;; text/prog modes
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
 
 ;; change 'yes or no' to 'y or n' for any confirmations
 (fset 'yes-or-no-p 'y-or-n-p)
 
+
 ;; press 'a' to open dir in same buffer instead of creating a new one
 ;; when navigating dirs in dired mode
 (put 'dired-find-alternate-file 'disabled nil)
+
 
 ;; C-x C-c will prompt for a response instead of closing completely
 (defun ask-before-closing ()
@@ -39,6 +96,7 @@
       (save-buffers-kill-terminal)
     (message "Canceled exit")))
 (global-set-key (kbd "C-x C-c") 'ask-before-closing)
+
 
 ;; from emacsredux
 (defun smarter-move-beginning-of-line (arg)
@@ -62,6 +120,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 
+
 ;; function to copy the current buffer path
 (defun copy-buffer-path ()
   "Copy buffer's full path to kill ring."
@@ -69,10 +128,11 @@ point reaches the beginning or end of the buffer, stop there."
   (when buffer-file-name
     (kill-new (file-truename buffer-file-name))
 	(message "Buffer path copied to clipboard.")))
-(global-set-key (kbd "C-c p") 'copy-buffer-path)
+
 
 ;; easier window movement commands (default uses SHIFT)
 (windmove-default-keybindings)
+
 
 ;; set few other shortcuts
 (global-set-key (kbd "C-c z") 'reveal-in-osx-finder)
@@ -80,6 +140,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-x g") 'magit-status)
+
 
 ;; web-mode activation
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -91,34 +152,39 @@ point reaches the beginning or end of the buffer, stop there."
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
+
 ;; enable yasnippet
 (yas-global-mode 1)
-; enable html yasnippets in web-mode
+;; enable html yasnippets in web-mode
 (add-hook 'web-mode-hook #'(lambda () (yas-activate-extra-mode 'html-mode)))
+
 
 ;; enable tern-mode for js
 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
+
 
 ;; js-comint sane setup
 (defun inferior-js-mode-hook-setup ()
   (add-hook 'comint-output-filter-functions 'js-comint-process-output))
 (add-hook 'inferior-js-mode-hook 'inferior-js-mode-hook-setup t)
 
+
 ;; company mode configuration
 (require 'company)
-; add company-restclient to company backends
+;; add company-restclient to company backends
 (add-to-list 'company-backends 'company-restclient)
-; company-tern configuration
+;; company-tern configuration
 (add-to-list 'company-backends 'company-tern)
 (setq company-tern-property-marker "")
 (setq company-tern-meta-as-single-line t)
-; setup shortcut to see snippet menu using company-mode
+;; setup shortcut to see snippet menu using company-mode
 (global-set-key (kbd "C-c y") 'company-yasnippet)
-; add company-web-html to company-backends only for web-mode
+;; add company-web-html to company-backends only for web-mode
 (add-hook 'web-mode-hook
 	  (lambda ()
 	    (set (make-local-variable 'company-backends) '(company-web-html))
 	    (company-mode t)))
+
 
 ;; web-beautify setup
 (eval-after-load 'js
@@ -131,6 +197,7 @@ point reaches the beginning or end of the buffer, stop there."
   '(define-key web-mode-map (kbd "C-c b") 'web-beautify-html))
 (eval-after-load 'css-mode
   '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
+
 
 ;; define front-end for anbt-sql-formatter
 ;; from http://www.emacswiki.org/emacs/SqlBeautify
@@ -145,49 +212,66 @@ point reaches the beginning or end of the buffer, stop there."
  (sql-beautify-region (point-min) (point-max)))
 (add-hook 'sql-mode-hook '(lambda () (define-key sql-mode-map (kbd "C-c b") 'sql-beautify-buffer)))
 
+
 ;; enable elpa for Python IDE support
 (elpy-enable)
+
 
 ;; turn on flycheck (on-the-fly syntax checker) for all compatible
 ;; programming modes
 (add-hook 'after-init-hook #'global-flycheck-mode)
-; add html-tidy flycheck checker for web-mode rather than use
-; handlebars default checker
+;; add html-tidy flycheck checker for web-mode rather than use
+;; handlebars default checker
 (eval-after-load 'flycheck
    '(flycheck-add-mode 'html-tidy 'web-mode))
+
 
 ;; enable smooth scrolling
 (smooth-scrolling-mode 1)
 
-;; enable mouse scrolling https://www.iterm2.com/faq.html
-(require 'mwheel)
-(require 'mouse)
-(xterm-mouse-mode t)
-(mouse-wheel-mode t)
-(global-set-key [mouse-4] 'previous-line)
-(global-set-key [mouse-5] 'next-line)
 
-;; enable pbcopy for macosx cliboard interactions
-(turn-on-pbcopy)
+;; enable mouse scrolling only in terminal-mode
+;; https://www.iterm2.com/faq.html
+(when (eq (display-graphic-p) nil)
+  (require 'mwheel)
+  (require 'mouse)
+  (xterm-mouse-mode t)
+  (mouse-wheel-mode t)
+  (global-set-key [mouse-4] 'previous-line)
+  (global-set-key [mouse-5] 'next-line))
+
+
+;; scroll conservatively when using mouse wheel or trackpad
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
+
+
+;; enable pbcopy for macosx cliboard interactions in terminal-mode
+(when (eq (display-graphic-p) nil)
+  (turn-on-pbcopy))
+
 
 ;; enable undo-mode for all modes
 (global-undo-tree-mode)
+
 
 ;; expand-region shortcut
 (require 'expand-region)
 (global-set-key (kbd "M-2") 'er/expand-region)
 
+
 ;; setup multiple-cursors
 (require 'multiple-cursors)
-(global-set-key (kbd "C-x M-l") 'mc/edit-lines)
-(global-set-key (kbd "C-x M->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-x M-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-x M-a") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c m c") 'mc/edit-lines)
+(global-set-key (kbd "C-c m n") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-c m p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c m a") 'mc/mark-all-like-this)
+
 
 ;; sql mode configuration
-; truncate long lines on the result set in SQLi buffer
+;; truncate long lines on the result set in SQLi buffer
 (add-hook 'sql-interactive-mode-hook (lambda () (toggle-truncate-lines t)))
-; from https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client/
+;; from https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client/
 (require 'sql-connections)
 (defun my-sql-connect (product connection)
   ;; load the password
@@ -202,17 +286,26 @@ point reaches the beginning or end of the buffer, stop there."
   ;; connect to database
   (setq sql-product product)
   (sql-connect connection))
-; rename SQL buffers automatically
+;; rename SQL buffers automatically
 (add-hook 'sql-interactive-mode-hook 'sql-rename-buffer)
+
 
 ;; enable restclient-mode for .http files
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
-;; ace-jump-mode configuration
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+;; ace-window customization - easily move between windows
+(global-set-key (kbd "C-x o") 'ace-window)
+(global-set-key (kbd "s-w") 'ace-window)
+
+
+;; avy configuration
+(global-set-key (kbd "C-:") 'avy-goto-word-or-subword-1)
+(global-set-key (kbd "s-f") 'avy-goto-word-or-subword-1)
+
 
 ;;
+
 
 ;; M-x customize auto-generated code below
 (custom-set-variables
@@ -220,6 +313,7 @@ point reaches the beginning or end of the buffer, stop there."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(avy-all-windows nil)
  '(backup-directory-alist (quote (("." . "~/.emacs.d/backups"))))
  '(bookmark-save-flag 0)
  '(column-number-mode t)
@@ -227,12 +321,14 @@ point reaches the beginning or end of the buffer, stop there."
  '(company-idle-delay 0)
  '(company-tooltip-limit 20)
  '(confirm-nonexistent-file-or-buffer nil)
+ '(custom-safe-themes t)
  '(delete-old-versions t)
  '(delete-selection-mode t)
  '(electric-pair-mode t)
  '(electric-pair-preserve-balance nil)
  '(epa-pinentry-mode (quote loopback))
  '(global-company-mode t)
+ '(global-hl-line-mode t)
  '(ido-auto-merge-work-directories-length -1)
  '(ido-create-new-buffer (quote always))
  '(ido-enable-flex-matching t)
@@ -247,9 +343,10 @@ point reaches the beginning or end of the buffer, stop there."
  '(neo-smart-open t)
  '(package-selected-packages
    (quote
-	(ace-jump-mode company-restclient restclient js-comint multiple-cursors expand-region undo-tree pbcopy smooth-scrolling unfill flycheck elpy company-tern web-beautify company-web company yasnippet web-mode magit smex smart-mode-line-powerline-theme reveal-in-osx-finder neotree markdown-mode)))
+	(backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smex smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
  '(show-paren-mode t)
  '(tab-width 4)
+ '(tool-bar-mode nil)
  '(version-control t)
  '(web-mode-enable-auto-closing t)
  '(web-mode-enable-auto-expanding t)
@@ -265,5 +362,6 @@ point reaches the beginning or end of the buffer, stop there."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:height 140 :family "Source Code Pro"))))
  '(web-mode-current-column-highlight-face ((t (:background "white"))))
  '(web-mode-current-element-highlight-face ((t (:background "white")))))
