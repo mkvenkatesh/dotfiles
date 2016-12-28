@@ -73,12 +73,6 @@
 (sml/setup)
 
 
-;; flyspell configuration - turn on automatic spell check for
-;; text/prog modes
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-
-
 ;; change 'yes or no' to 'y or n' for any confirmations
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -327,6 +321,8 @@ point reaches the beginning or end of the buffer, stop there."
  '(electric-pair-mode t)
  '(electric-pair-preserve-balance nil)
  '(epa-pinentry-mode (quote loopback))
+ '(flycheck-indication-mode nil)
+ '(frame-background-mode (quote dark))
  '(global-company-mode t)
  '(global-hl-line-mode t)
  '(ido-auto-merge-work-directories-length -1)
