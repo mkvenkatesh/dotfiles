@@ -14,3 +14,5 @@
 /gnupg.zip.gpg
 /.emacs.d/url/cookies
 /.emacs.d/url/
+/.emacs.d/network-security.data
+/.emacs.d/eshell/history
