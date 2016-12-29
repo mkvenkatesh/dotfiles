@@ -279,12 +279,19 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; ace-window customization - easily move between windows
 (global-set-key (kbd "C-x o") 'ace-window)
-(global-set-key (kbd "s-w") 'ace-window)
+(global-set-key (kbd "M-p") 'ace-window)
 
 
 ;; avy configuration
-(global-set-key (kbd "C-:") 'avy-goto-word-or-subword-1)
-(global-set-key (kbd "s-f") 'avy-goto-word-or-subword-1)
+(global-set-key (kbd "C-'") 'avy-goto-word-or-subword-1)
+
+
+;; from emacs-redux. edit files as sudo using tramp
+(defadvice ido-find-file (after find-file-sudo activate)
+  "Find file as root if necessary."
+  (unless (and buffer-file-name
+               (file-writable-p buffer-file-name))
+    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 
 ;;
