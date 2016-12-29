@@ -23,8 +23,17 @@ Dropbox to `$HOME/Library/LaunchAgents` and loads it.
 
 See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 
+* Install emacs using Homebrew: `brew install emacs --with-cocoa
+  --with-gnutls` and follow brew instructions. **Don't** run `brew
+  services start emacs` since we don't want to run emacs in daemon
+  mode as it doesn't fit my workflow.
+
 * `brew install markdown` to install markdown pre-processor which is
   used in `markdown-mode` for compiling markdown files.
+
+* `brew install hunspell` to install a spellchecker for
+  emacs. Download the English dictionary for Hunspell and place them
+  in `~/Library/Spelling/`
 
 * `npm -g install js-beautify` to install js-beautify npm module used
   by `web-beautify` emacs package for beautifying HTML, CSS, JS and
@@ -62,6 +71,15 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
   files. Otherwise I'm getting an error in emacs when decrypting
   `.gpg` files: `epa-file--find-file-not-found-function: Opening input
   file: Decryption failed,`
+
+* If you use iTerm2 with its shell integration features, `M-x
+  ansi-term` will start `bash` with some gibberish characters. To get
+  around this issue, move iterm2-shell-intergration sourcing from
+  `.bashrc` to `.bash_profile`. This will make ansi-term work properly
+  and still have the shell integration features apply to iterm2.
+
+* `brew install coreutils` to get recent versions of coreutils
+  required for `dired` mode to work properly.
 
 ### ELPA Packages
 
