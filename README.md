@@ -94,9 +94,11 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * exec-path-from-shell
 * expand-region
 * flycheck
+* imenu-everywhere
 * js-comint
 * magit
 * markdown-mode
+* multi-term
 * multiple-cursors
 * neotree
 * pbcopy
@@ -106,6 +108,7 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * smooth-scrolling
 * smex
 * tern
+* tramp-term
 * undo-tree
 * unfill
 * web-beautify

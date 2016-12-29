@@ -46,6 +46,40 @@
   (exec-path-from-shell-initialize))
 
 
+;; from emacs-redux. make use of recently opened files list
+(require 'recentf)
+(setq recentf-max-saved-items 200
+      recentf-max-menu-items 15)
+(recentf-mode +1)
+;; use ido with recentf
+(defun recentf-ido-find-file ()
+  "Find a recent file using ido."
+  (interactive)
+  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+    (when file
+      (find-file file))))
+(global-set-key (kbd "C-c f") 'recentf-ido-find-file)
+
+
+;; from emacs-redux. delete currently visited file and buffer.
+(defun delete-file-and-buffer ()
+  "Kill the current buffer and deletes the file it is visiting."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (when filename
+      (if (vc-backend filename)
+          (vc-delete-file filename)
+        (progn
+          (delete-file filename)
+          (message "Deleted file %s" filename)
+          (kill-buffer))))))
+(global-set-key (kbd "C-c D")  'delete-file-and-buffer)
+
+
+;; imenu-everywhere binding
+(global-set-key (kbd "s-.") 'ido-imenu-anywhere)
+
+
 ;; Run code below only for OS X
 (if (eq system-type 'darwin)
 	;; use gls from coreutils rather than Mac's ls command for dired mode
@@ -80,16 +114,6 @@
 ;; press 'a' to open dir in same buffer instead of creating a new one
 ;; when navigating dirs in dired mode
 (put 'dired-find-alternate-file 'disabled nil)
-
-
-;; C-x C-c will prompt for a response instead of closing completely
-(defun ask-before-closing ()
-  "Ask whether or not to close, and then close if y was pressed."
-  (interactive)
-  (if (y-or-n-p (format "Are you sure you want to exit Emacs? "))
-      (save-buffers-kill-terminal)
-    (message "Canceled exit")))
-(global-set-key (kbd "C-x C-c") 'ask-before-closing)
 
 
 ;; from emacsredux
@@ -245,10 +269,10 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; setup multiple-cursors
 (require 'multiple-cursors)
-(global-set-key (kbd "C-c m c") 'mc/edit-lines)
-(global-set-key (kbd "C-c m n") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-c m p") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c m a") 'mc/mark-all-like-this)
+(global-set-key (kbd "s-c") 'mc/edit-lines)
+(global-set-key (kbd "s-n") 'mc/mark-next-like-this)
+(global-set-key (kbd "s-p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "s-a") 'mc/mark-all-like-this)
 
 
 ;; sql mode configuration
@@ -279,11 +303,11 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; ace-window customization - easily move between windows
 (global-set-key (kbd "C-x o") 'ace-window)
-(global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "s-w") 'ace-window)
 
 
 ;; avy configuration
-(global-set-key (kbd "C-'") 'avy-goto-word-or-subword-1)
+(global-set-key (kbd "s-f") 'avy-goto-word-or-subword-1)
 
 
 ;; from emacs-redux. edit files as sudo using tramp
@@ -293,6 +317,23 @@ point reaches the beginning or end of the buffer, stop there."
                (file-writable-p buffer-file-name))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
+
+;; multi-term setup
+(require 'multi-term)
+;; cycle through existing or create new multi-term
+(global-set-key (kbd "C-c t") 'multi-term-next)
+(global-set-key (kbd "C-c T") 'multi-term) ; create a new one
+(global-set-key (kbd "<f10>") 'multi-term-dedicated-toggle)
+;; switch between line-mode and char-mode in multi-term
+(define-key term-mode-map (kbd "C-j") 'term-char-mode)
+(define-key term-raw-map (kbd "C-j") 'term-line-mode)
+;; remove line highlight while in term-mode
+(add-hook 'term-mode-hook (lambda ()
+							(setq-local global-hl-line-mode
+										nil)))
+;; disable yasnippets for term-mode so tab completion works
+(add-hook 'term-mode-hook (lambda()
+                (yas-minor-mode -1)))
 
 ;;
 
@@ -310,6 +351,7 @@ point reaches the beginning or end of the buffer, stop there."
  '(company-dabbrev-downcase nil)
  '(company-idle-delay 0)
  '(company-tooltip-limit 20)
+ '(confirm-kill-emacs (quote y-or-n-p))
  '(confirm-nonexistent-file-or-buffer nil)
  '(custom-safe-themes t)
  '(delete-old-versions t)
@@ -330,6 +372,7 @@ point reaches the beginning or end of the buffer, stop there."
  '(kept-new-versions 6)
  '(linum-format " %d ")
  '(major-mode (quote markdown-mode))
+ '(multi-term-dedicated-select-after-open-p t)
  '(neo-smart-open t)
  '(ns-alternate-modifier (quote super))
  '(ns-command-modifier (quote meta))
@@ -337,7 +380,8 @@ point reaches the beginning or end of the buffer, stop there."
  '(ns-pop-up-frames nil)
  '(package-selected-packages
    (quote
-	(backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smex smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
+	(imenu-anywhere tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smex smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
+ '(ring-bell-function (quote ignore))
  '(show-paren-mode t)
  '(tab-width 4)
  '(tool-bar-mode nil)
