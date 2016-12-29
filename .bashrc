@@ -10,8 +10,9 @@ export ALTERNATE_EDITOR="alternate-emacs"
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -n"
 alias kill_emacs_server='emacsclient -e "(kill-emacs)"'
-alias ec='emacsclient -n'
-alias ect='emacsclient -t'
+alias e='emacsclient -n'
+alias et='emacsclient -t'
+alias er="SUDO_EDITOR=\"emacsclient -n\" sudo -e"
 
 # Set environment vars for Oracle
 export ORACLE_HOME=/opt/oracle/instantclient_12_1
