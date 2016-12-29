@@ -4,6 +4,13 @@
 ;; see the README for more details
 
 ;;; Code:
+
+;; start emacs server if none is available
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
+
 ;; add MELPA & Marmalade
 (package-initialize)
 (add-to-list
@@ -13,30 +20,17 @@
 
 
 ;; use Solarized-dark as default theme
-(when (display-graphic-p)
-  (customize-set-variable 'frame-background-mode 'dark)
-  (load-theme 'solarized-dark t))
+(load-theme 'solarized-dark t)
 
 
 ;; switch between Solarized dark and light theme
-(defun set-solarized-light ()
+(defun solarized-light ()
   (interactive)
-  (customize-set-variable 'frame-background-mode 'light)
   (load-theme 'solarized-light t))
 
-(defun set-solarized-dark ()
+(defun solarized-dark ()
   (interactive)
-  (customize-set-variable 'frame-background-mode 'dark)
   (load-theme 'solarized-dark t))
-
-(defun toggle-solarized-theme ()
-     "Toggle between Solarized light/dark color scheme."
-    (interactive)
-    (if (eq frame-background-mode 'dark)
-          (set-solarized-light)
-      (set-solarized-dark)))
-
-(global-set-key (kbd "<f12>") 'toggle-solarized-theme)
 
 
 ;; set frame title
@@ -65,6 +59,12 @@
 ;; additional hooks
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+
+;; flyspell configuration - turn on automatic spell check for
+;; text/prog modes
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 
 ;; activate smart-mode-line
@@ -224,17 +224,6 @@ point reaches the beginning or end of the buffer, stop there."
 (smooth-scrolling-mode 1)
 
 
-;; enable mouse scrolling only in terminal-mode
-;; https://www.iterm2.com/faq.html
-(when (eq (display-graphic-p) nil)
-  (require 'mwheel)
-  (require 'mouse)
-  (xterm-mouse-mode t)
-  (mouse-wheel-mode t)
-  (global-set-key [mouse-4] 'previous-line)
-  (global-set-key [mouse-5] 'next-line))
-
-
 ;; scroll conservatively when using mouse wheel or trackpad
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
@@ -322,7 +311,6 @@ point reaches the beginning or end of the buffer, stop there."
  '(electric-pair-preserve-balance nil)
  '(epa-pinentry-mode (quote loopback))
  '(flycheck-indication-mode nil)
- '(frame-background-mode (quote dark))
  '(global-company-mode t)
  '(global-hl-line-mode t)
  '(ido-auto-merge-work-directories-length -1)
@@ -331,12 +319,15 @@ point reaches the beginning or end of the buffer, stop there."
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
- '(initial-major-mode (quote markdown-mode))
  '(initial-scratch-message nil)
  '(kept-new-versions 6)
  '(linum-format " %d ")
  '(major-mode (quote markdown-mode))
  '(neo-smart-open t)
+ '(ns-alternate-modifier (quote super))
+ '(ns-command-modifier (quote meta))
+ '(ns-function-modifier (quote hyper))
+ '(ns-pop-up-frames nil)
  '(package-selected-packages
    (quote
 	(backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smex smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
