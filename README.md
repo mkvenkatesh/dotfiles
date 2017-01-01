@@ -84,6 +84,7 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 ### ELPA Packages
 
 * ace-window
+* ag
 * avy
 * backup-walker
 * company
@@ -91,6 +92,7 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * company-tern
 * company-web
 * counsel
+* counsel-projectile
 * elpy
 * exec-path-from-shell
 * expand-region
@@ -105,6 +107,7 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * multiple-cursors
 * neotree
 * pbcopy
+* projectile
 * restclient
 * reveal-in-osx-finder
 * smart-mode-line

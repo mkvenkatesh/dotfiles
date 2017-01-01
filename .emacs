@@ -126,6 +126,11 @@
 							  (counsel-ag . ivy--regex-plus)
 							  (counsel-grep-or-swiper . ivy--regex-plus)
 							  (t . ivy--regex-fuzzy)))
+(counsel-projectile-on)
+
+
+;; enable projectile mode
+(projectile-mode)
 
 ;; imenu-anywhere configuration
 (eval-after-load "flyspell"
@@ -175,6 +180,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "s-$") 'ispell-word)
 (global-set-key (kbd "s-x") 'tramp-term)
+(global-set-key (kbd "C-x C-b") 'ibuffer-other-window)
 
 
 ;; web-mode activation
@@ -388,6 +394,9 @@ buffer is not visiting a file."
  '(flycheck-indication-mode nil)
  '(global-company-mode t)
  '(global-hl-line-mode t)
+ '(ibuffer-default-sorting-mode (quote major-mode))
+ '(ibuffer-display-summary nil)
+ '(ibuffer-expert t)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(ivy-extra-directories (quote ("./")))
@@ -404,7 +413,8 @@ buffer is not visiting a file."
  '(ns-pop-up-frames nil)
  '(package-selected-packages
    (quote
-	(imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
+	(ag counsel-projectile projectile imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
+ '(projectile-completion-system (quote ivy))
  '(ring-bell-function (quote ignore))
  '(show-paren-mode t)
  '(tab-width 4)
