@@ -18,3 +18,5 @@
 /.emacs.d/eshell/history
 /.emacs.d/tramp
 /.emacs.d/games/snake-scores
+/.emacs.d/.authinfo.gpg
+/.emacs.d/recentf
