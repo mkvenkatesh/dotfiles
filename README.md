@@ -90,11 +90,14 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * company-restclient
 * company-tern
 * company-web
+* counsel
 * elpy
 * exec-path-from-shell
 * expand-region
+* flx
 * flycheck
-* imenu-everywhere
+* imenu-anywhere
+* ivy
 * js-comint
 * magit
 * markdown-mode
@@ -106,7 +109,7 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * reveal-in-osx-finder
 * smart-mode-line
 * smooth-scrolling
-* smex
+* swiper
 * tern
 * tramp-term
 * undo-tree

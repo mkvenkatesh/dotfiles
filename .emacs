@@ -51,14 +51,6 @@
 (setq recentf-max-saved-items 200
       recentf-max-menu-items 15)
 (recentf-mode +1)
-;; use ido with recentf
-(defun recentf-ido-find-file ()
-  "Find a recent file using ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-    (when file
-      (find-file file))))
-(global-set-key (kbd "C-c f") 'recentf-ido-find-file)
 
 
 ;; from emacs-redux. delete currently visited file and buffer.
@@ -74,10 +66,6 @@
           (message "Deleted file %s" filename)
           (kill-buffer))))))
 (global-set-key (kbd "C-c D")  'delete-file-and-buffer)
-
-
-;; imenu-everywhere binding
-(global-set-key (kbd "s-.") 'ido-imenu-anywhere)
 
 
 ;; Run code below only for OS X
@@ -114,6 +102,35 @@
 ;; press 'a' to open dir in same buffer instead of creating a new one
 ;; when navigating dirs in dired mode
 (put 'dired-find-alternate-file 'disabled nil)
+
+
+;; ivy/swiper customization
+(ivy-mode 1)
+(require 'flx)
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-r") 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "s-SPC") 'ivy-restrict-to-matches)
+(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+; Use Enter on a directory to navigate into the directory, not open it
+; with dired.
+(define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
+(setq ivy-initial-inputs-alist nil)
+(setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
+							  (counsel-ag . ivy--regex-plus)
+							  (counsel-grep-or-swiper . ivy--regex-plus)
+							  (t . ivy--regex-fuzzy)))
+
+;; imenu-anywhere configuration
+(eval-after-load "flyspell"
+  '(define-key flyspell-mode-map (kbd "C-.") nil))
+(global-set-key (kbd "C-.") #'imenu-anywhere)
 
 
 ;; from emacsredux
@@ -155,9 +172,9 @@ point reaches the beginning or end of the buffer, stop there."
 ;; set few other shortcuts
 (global-set-key (kbd "C-c z") 'reveal-in-osx-finder)
 (global-set-key [f8] 'neotree-toggle)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "s-$") 'ispell-word)
+(global-set-key (kbd "s-x") 'tramp-term)
 
 
 ;; web-mode activation
@@ -311,11 +328,18 @@ point reaches the beginning or end of the buffer, stop there."
 
 
 ;; from emacs-redux. edit files as sudo using tramp
-(defadvice ido-find-file (after find-file-sudo activate)
-  "Find file as root if necessary."
-  (unless (and buffer-file-name
-               (file-writable-p buffer-file-name))
+(defun sudo-edit (&optional arg)
+  "Edit currently visited file as root.
+
+With a prefix ARG prompt for a file to visit.
+Will also prompt for a file to visit if current
+buffer is not visiting a file."
+  (interactive "P")
+  (if (or arg (not buffer-file-name))
+      (find-file (concat "/sudo:root@localhost:"
+                         (read-file-name "Find file(as root): ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+(global-set-key (kbd "C-x C-r") 'sudo-edit)
 
 
 ;; multi-term setup
@@ -344,6 +368,7 @@ point reaches the beginning or end of the buffer, stop there."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auth-sources (quote ("~/.emacs.d/.authinfo.gpg")))
  '(avy-all-windows nil)
  '(backup-directory-alist (quote (("." . "~/.emacs.d/backups"))))
  '(bookmark-save-flag 0)
@@ -353,6 +378,7 @@ point reaches the beginning or end of the buffer, stop there."
  '(company-tooltip-limit 20)
  '(confirm-kill-emacs (quote y-or-n-p))
  '(confirm-nonexistent-file-or-buffer nil)
+ '(counsel-locate-cmd (quote counsel-locate-cmd-mdfind))
  '(custom-safe-themes t)
  '(delete-old-versions t)
  '(delete-selection-mode t)
@@ -362,15 +388,13 @@ point reaches the beginning or end of the buffer, stop there."
  '(flycheck-indication-mode nil)
  '(global-company-mode t)
  '(global-hl-line-mode t)
- '(ido-auto-merge-work-directories-length -1)
- '(ido-create-new-buffer (quote always))
- '(ido-enable-flex-matching t)
- '(ido-everywhere t)
- '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
+ '(ivy-extra-directories (quote ("./")))
+ '(ivy-use-virtual-buffers t)
  '(kept-new-versions 6)
  '(linum-format " %d ")
+ '(magit-completing-read-function (quote ivy-completing-read))
  '(major-mode (quote markdown-mode))
  '(multi-term-dedicated-select-after-open-p t)
  '(neo-smart-open t)
@@ -380,11 +404,12 @@ point reaches the beginning or end of the buffer, stop there."
  '(ns-pop-up-frames nil)
  '(package-selected-packages
    (quote
-	(imenu-anywhere tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smex smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
+	(imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
  '(ring-bell-function (quote ignore))
  '(show-paren-mode t)
  '(tab-width 4)
  '(tool-bar-mode nil)
+ '(tramp-default-method "ssh")
  '(version-control t)
  '(web-mode-enable-auto-closing t)
  '(web-mode-enable-auto-expanding t)
