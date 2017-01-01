@@ -107,7 +107,7 @@
 ;; ivy/swiper customization
 (ivy-mode 1)
 (require 'flx)
-(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
 (global-set-key (kbd "C-r") 'swiper)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -120,7 +120,9 @@
 (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
 ; Use Enter on a directory to navigate into the directory, not open it
 ; with dired.
-(define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
+(define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
+(global-set-key (kbd "M-y") 'counsel-yank-pop)
+(global-set-key (kbd "C-c d") 'counsel-descbinds)
 (setq ivy-initial-inputs-alist nil)
 (setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
 							  (counsel-ag . ivy--regex-plus)
