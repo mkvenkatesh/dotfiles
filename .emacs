@@ -367,6 +367,37 @@ buffer is not visiting a file."
 (add-hook 'term-mode-hook (lambda()
                 (yas-minor-mode -1)))
 
+
+;; jekyll mode configuration
+(add-to-list 'auto-mode-alist '("\\.md$" . jekyll-markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown$" . jekyll-markdown-mode))
+
+
+;; mmm-mode configuration for markdown files
+(require 'mmm-mode)
+(setq mmm-global-mode 'maybe)
+
+;; from http://jblevins.org/log/mmm
+(defun my-mmm-markdown-auto-class (lang &optional submode)
+  "Define a mmm-mode class for LANG in `markdown-mode' using SUBMODE.
+If SUBMODE is not provided, use `LANG-mode' by default."
+  (let ((class (intern (concat "markdown-" lang)))
+        (submode (or submode (intern (concat lang "-mode"))))
+        (front (concat "^```" lang "[\n\r]+"))
+        (back "^```"))
+    (mmm-add-classes (list (list class :submode submode :front front :back back)))
+    (mmm-add-mode-ext-class 'markdown-mode nil class)))
+
+;; Mode names that derive directly from the language name
+(mapc 'my-mmm-markdown-auto-class
+      '("awk" "bibtex" "c" "cpp" "css" "html" "js" "latex" "lisp" "makefile"
+        "markdown" "python" "r" "ruby" "sql" "stata" "xml"))
+
+;; Mode names that differ from the language name
+(my-mmm-markdown-auto-class "perl" 'cperl-mode)
+(my-mmm-markdown-auto-class "shell" 'shell-script-mode)
+
+
 ;;
 
 
@@ -406,7 +437,7 @@ buffer is not visiting a file."
  '(kept-new-versions 6)
  '(linum-format " %d ")
  '(magit-completing-read-function (quote ivy-completing-read))
- '(major-mode (quote markdown-mode))
+ '(mmm-parse-when-idle t)
  '(multi-term-dedicated-select-after-open-p t)
  '(neo-smart-open t)
  '(ns-alternate-modifier (quote super))
@@ -415,7 +446,7 @@ buffer is not visiting a file."
  '(ns-pop-up-frames nil)
  '(package-selected-packages
    (quote
-	(ag counsel-projectile projectile imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
+	(yaml-mode jekyll-modes mmm-mode ag counsel-projectile projectile imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
  '(projectile-completion-system (quote ivy))
  '(ring-bell-function (quote ignore))
  '(show-paren-mode t)

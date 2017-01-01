@@ -81,6 +81,9 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * `brew install coreutils` to get recent versions of coreutils
   required for `dired` mode to work properly.
 
+* `brew install the_silver_searcher` to install `ag` for fat grepping
+  code files used by `counsel-ag`.
+
 ### ELPA Packages
 
 * ace-window
@@ -100,9 +103,11 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * flycheck
 * imenu-anywhere
 * ivy
+* jekyll-mode
 * js-comint
 * magit
 * markdown-mode
+* mmm-mode
 * multi-term
 * multiple-cursors
 * neotree
