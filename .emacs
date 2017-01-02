@@ -260,10 +260,6 @@ point reaches the beginning or end of the buffer, stop there."
    '(flycheck-add-mode 'html-tidy 'web-mode))
 
 
-;; enable smooth scrolling
-(smooth-scrolling-mode 1)
-
-
 ;; scroll conservatively when using mouse wheel or trackpad
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
@@ -440,7 +436,9 @@ If SUBMODE is not provided, use `LANG-mode' by default."
 	(yaml-mode jekyll-modes mmm-mode ag counsel-projectile projectile imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
  '(projectile-completion-system (quote ivy))
  '(ring-bell-function (quote ignore))
+ '(scroll-bar-mode nil)
  '(show-paren-mode t)
+ '(smooth-scrolling-mode t)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(tramp-default-method "ssh")
