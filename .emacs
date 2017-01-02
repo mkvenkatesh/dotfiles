@@ -23,16 +23,6 @@
 (load-theme 'solarized-dark t)
 
 
-;; switch between Solarized dark and light theme
-(defun solarized-light ()
-  (interactive)
-  (load-theme 'solarized-light t))
-
-(defun solarized-dark ()
-  (interactive)
-  (load-theme 'solarized-dark t))
-
-
 ;; set frame title
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
@@ -115,6 +105,7 @@
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-x t") 'counsel-load-theme)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "s-SPC") 'ivy-restrict-to-matches)
 (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
