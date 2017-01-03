@@ -199,7 +199,6 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-c z") 'reveal-in-osx-finder)
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "s-$") 'ispell-word)
 (global-set-key (kbd "s-x s") 'tramp-term)
 (global-set-key (kbd "C-x C-b") 'ibuffer-other-window)
 
@@ -449,6 +448,7 @@ If SUBMODE is not provided, use `LANG-mode' by default."
  '(ibuffer-expert t)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
+ '(ivy-count-format "(%d/%d) ")
  '(ivy-extra-directories nil)
  '(ivy-use-virtual-buffers t)
  '(ivy-wrap t)
