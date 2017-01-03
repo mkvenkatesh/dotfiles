@@ -101,9 +101,9 @@
 (global-set-key (kbd "C-r") 'swiper)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c b") 'counsel-bookmark)
 (global-set-key (kbd "C-c f") 'counsel-recentf)
+(global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
@@ -145,6 +145,7 @@
 
 ;; enable projectile mode
 (projectile-mode)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 
 ;; imenu-anywhere configuration
 (eval-after-load "flyspell"
@@ -303,8 +304,6 @@ point reaches the beginning or end of the buffer, stop there."
 ;; setup multiple-cursors
 (require 'multiple-cursors)
 (global-set-key (kbd "s-c") 'mc/edit-lines)
-(global-set-key (kbd "s-n") 'mc/mark-next-like-this)
-(global-set-key (kbd "s-p") 'mc/mark-previous-like-this)
 (global-set-key (kbd "s-a") 'mc/mark-all-like-this)
 
 
