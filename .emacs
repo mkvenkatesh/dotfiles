@@ -198,6 +198,7 @@ point reaches the beginning or end of the buffer, stop there."
 ;; set few other shortcuts
 (global-set-key (kbd "C-c z") 'reveal-in-osx-finder)
 (global-set-key [f8] 'neotree-toggle)
+(global-set-key (kbd "s-$") 'ispell-word)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "s-x s") 'tramp-term)
 (global-set-key (kbd "C-x C-b") 'ibuffer-other-window)
@@ -459,9 +460,8 @@ If SUBMODE is not provided, use `LANG-mode' by default."
  '(mmm-parse-when-idle t)
  '(multi-term-dedicated-select-after-open-p t)
  '(neo-smart-open t)
- '(ns-alternate-modifier (quote meta))
- '(ns-command-modifier (quote control))
- '(ns-control-modifier (quote super))
+ '(ns-alternate-modifier (quote super))
+ '(ns-command-modifier (quote meta))
  '(ns-function-modifier (quote hyper))
  '(ns-pop-up-frames nil)
  '(package-selected-packages

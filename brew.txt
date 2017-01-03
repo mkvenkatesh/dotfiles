@@ -16,6 +16,7 @@ gmp
 gnupg21
 gnutls
 gobject-introspection
+grep
 harfbuzz
 hunspell
 icu4c
@@ -51,5 +52,7 @@ readline
 ruby-build
 shared-mime-info
 sqlite
+the_silver_searcher
 tidy-html5
 tree
+xz
