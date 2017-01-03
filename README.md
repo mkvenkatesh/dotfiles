@@ -112,6 +112,7 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * multiple-cursors
 * neotree
 * pbcopy
+* py-autopep8
 * projectile
 * restclient
 * reveal-in-osx-finder

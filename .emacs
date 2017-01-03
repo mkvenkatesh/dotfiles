@@ -277,6 +277,12 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; enable elpa for Python IDE support
 (elpy-enable)
+;; elpy uses flymake by default; switch to use flycheck instead
+(when (require 'flycheck nil t)
+  (remove-hook 'elpy-modules 'elpy-module-flymake)
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+;; enable autopep8 formatting on save
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 
 ;; turn on flycheck (on-the-fly syntax checker) for all compatible
@@ -466,8 +472,9 @@ If SUBMODE is not provided, use `LANG-mode' by default."
  '(ns-pop-up-frames nil)
  '(package-selected-packages
    (quote
-	(yaml-mode jekyll-modes mmm-mode ag counsel-projectile projectile imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
+	(py-autopep8 yaml-mode jekyll-modes mmm-mode ag counsel-projectile projectile imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
  '(projectile-completion-system (quote ivy))
+ '(python-indent-guess-indent-offset-verbose nil)
  '(ring-bell-function (quote ignore))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
