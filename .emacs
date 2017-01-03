@@ -112,14 +112,32 @@
 ; Use Enter on a directory to navigate into the directory, not open it
 ; with dired.
 (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
+(define-key ivy-minibuffer-map (kbd "C-;") 'ivy-dired)
+(define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
 (global-set-key (kbd "C-c d") 'counsel-descbinds)
+(ivy-set-actions
+ t
+ '(("i" insert "insert")
+   ("w" kill-new "copy")))
 (setq ivy-initial-inputs-alist nil)
 (setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
 							  (counsel-ag . ivy--regex-plus)
 							  (counsel-grep-or-swiper . ivy--regex-plus)
 							  (t . ivy--regex-fuzzy)))
 (counsel-projectile-on)
+
+(defun ivy-dired ()
+  (interactive)
+  (if ivy--directory
+      (ivy-quit-and-run
+       (dired ivy--directory)
+       (when (re-search-forward
+              (regexp-quote
+               (substring ivy--current 0 -1)) nil t)
+         (goto-char (match-beginning 0))))
+    (user-error
+     "Not completing files currently")))
 
 
 ;; enable projectile mode
@@ -404,6 +422,7 @@ If SUBMODE is not provided, use `LANG-mode' by default."
  '(company-tooltip-limit 20)
  '(confirm-kill-emacs (quote y-or-n-p))
  '(confirm-nonexistent-file-or-buffer nil)
+ '(counsel-find-file-ignore-regexp "\\`\\.")
  '(counsel-locate-cmd (quote counsel-locate-cmd-mdfind))
  '(custom-safe-themes t)
  '(delete-old-versions t)
@@ -419,7 +438,7 @@ If SUBMODE is not provided, use `LANG-mode' by default."
  '(ibuffer-expert t)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
- '(ivy-extra-directories (quote ("./")))
+ '(ivy-extra-directories nil)
  '(ivy-use-virtual-buffers t)
  '(kept-new-versions 6)
  '(linum-format " %d ")
