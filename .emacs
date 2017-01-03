@@ -459,8 +459,9 @@ If SUBMODE is not provided, use `LANG-mode' by default."
  '(mmm-parse-when-idle t)
  '(multi-term-dedicated-select-after-open-p t)
  '(neo-smart-open t)
- '(ns-alternate-modifier (quote super))
- '(ns-command-modifier (quote meta))
+ '(ns-alternate-modifier (quote meta))
+ '(ns-command-modifier (quote control))
+ '(ns-control-modifier (quote super))
  '(ns-function-modifier (quote hyper))
  '(ns-pop-up-frames nil)
  '(package-selected-packages
