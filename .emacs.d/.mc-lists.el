@@ -5,6 +5,7 @@
       '(
 		dabbrev-expand
 		delete-horizontal-space
+		ivy-alt-done
 		shell-command-on-region
 		yas-expand
 		))

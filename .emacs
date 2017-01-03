@@ -23,6 +23,12 @@
 (load-theme 'solarized-dark t)
 
 
+;; remove default keybindings for the following
+(global-set-key (kbd "s-c") nil)
+(global-set-key (kbd "s-m") nil)
+(global-set-key (kbd "s-x") nil)
+
+
 ;; set frame title
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
@@ -194,7 +200,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "s-$") 'ispell-word)
-(global-set-key (kbd "s-x") 'tramp-term)
+(global-set-key (kbd "s-x s") 'tramp-term)
 (global-set-key (kbd "C-x C-b") 'ibuffer-other-window)
 
 
@@ -303,8 +309,11 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; setup multiple-cursors
 (require 'multiple-cursors)
-(global-set-key (kbd "s-c") 'mc/edit-lines)
-(global-set-key (kbd "s-a") 'mc/mark-all-like-this)
+(global-set-key (kbd "s-m s-c") 'mc/edit-lines)
+(global-set-key (kbd "s-m s-n") 'mc/mark-next-like-this)
+(global-set-key (kbd "s-m s-p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "s-m s-a") 'mc/mark-all-like-this)
+(global-set-key (kbd "s-m s-d") 'mc/mark-pop)
 
 
 ;; sql mode configuration
@@ -446,6 +455,7 @@ If SUBMODE is not provided, use `LANG-mode' by default."
  '(kept-new-versions 6)
  '(linum-format " %d ")
  '(magit-completing-read-function (quote ivy-completing-read))
+ '(markdown-list-indent-width 2)
  '(mmm-parse-when-idle t)
  '(multi-term-dedicated-select-after-open-p t)
  '(neo-smart-open t)
