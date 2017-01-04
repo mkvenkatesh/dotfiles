@@ -29,6 +29,20 @@
 (global-set-key (kbd "s-x") nil)
 
 
+;; setup key-chords
+(key-chord-mode 1)
+(key-chord-define-global "jj" 'counsel-grep-or-swiper)
+(key-chord-define-global "jk" 'avy-goto-word-or-subword-1)
+(key-chord-define-global "jl" 'ace-window)
+(key-chord-define-global "uu" 'undo-tree-undo)
+(key-chord-define-global ";'" 'ivy-switch-buffer)
+(key-chord-define-global ",." 'counsel-find-file)
+(key-chord-define-global ";l" 'save-buffer)
+(key-chord-define-global ";k" 'kill-buffer)
+(key-chord-define-global ";m" 'multi-term-dedicated-toggle)
+(key-chord-define-global ";o" 'magit-status)
+
+
 ;; set frame title
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
@@ -472,7 +486,7 @@ If SUBMODE is not provided, use `LANG-mode' by default."
  '(ns-pop-up-frames nil)
  '(package-selected-packages
    (quote
-	(py-autopep8 yaml-mode jekyll-modes mmm-mode ag counsel-projectile projectile imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
+	(key-chord py-autopep8 yaml-mode jekyll-modes mmm-mode ag counsel-projectile projectile imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
  '(projectile-completion-system (quote ivy))
  '(python-indent-guess-indent-offset-verbose nil)
  '(ring-bell-function (quote ignore))

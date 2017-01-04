@@ -105,6 +105,7 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * ivy
 * jekyll-mode
 * js-comint
+* key-chord
 * magit
 * markdown-mode
 * mmm-mode
