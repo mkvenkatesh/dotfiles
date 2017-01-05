@@ -34,6 +34,7 @@
 (key-chord-define-global "jj" 'counsel-grep-or-swiper)
 (key-chord-define-global "jk" 'avy-goto-word-or-subword-1)
 (key-chord-define-global "uu" 'undo-tree-undo)
+(key-chord-define-global "bb" 'counsel-bookmark)
 (key-chord-define-global ";'" 'ivy-switch-buffer)
 (key-chord-define-global ",." 'counsel-find-file)
 (key-chord-define-global ";l" 'save-buffer)
