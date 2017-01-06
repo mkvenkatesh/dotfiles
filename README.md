@@ -64,8 +64,20 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
   * `pip install autopep8` for automatic PEP8 formatting
   * `pip install yapf` for code formatting
 
-* For Emacs25 and Mac OSX, we need to follow proper instructions to
-  set `gnupg` with emacs. Follow
+* To get `gpg` (GNUPG20) working properly with Emacs in Mac OS X, do the
+  following;
+  * Install `gpg` with brew `brew install gpg`
+  * Install `pinentry-mac` with brew `brew install pinentry-mac`
+  * create `~/.gnupg/gpg-agent.conf` and add the following lines.
+
+	```bash
+	use-standard-socket
+	pinentry-program /usr/local/bin/pinentry-mac
+	```
+
+* __Note:__ This is only if you install `gnupg21` with brew. For Emacs25
+  and Mac OSX, we need to follow proper instructions to set `gnupg`
+  with emacs. Follow
   this [StackOverflow Link](http://tinyurl.com/z7osezq). This is
   required for emacs to properly encrypt/decrypt `.gpg`
   files. Otherwise I'm getting an error in emacs when decrypting
