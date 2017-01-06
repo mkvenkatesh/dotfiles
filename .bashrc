@@ -50,3 +50,6 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # enable aws bash completion
 complete -C '/usr/local/bin/aws_completer' aws
+
+# enable bash completion for password-store
+source /usr/local/etc/bash_completion.d/password-store
