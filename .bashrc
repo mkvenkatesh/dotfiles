@@ -47,3 +47,6 @@ eval "$(rbenv init -)"
 
 # pyenv configuration
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+# enable aws bash completion
+complete -C '/usr/local/bin/aws_completer' aws
