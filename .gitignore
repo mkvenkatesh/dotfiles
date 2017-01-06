@@ -21,3 +21,5 @@
 /.emacs.d/.authinfo.gpg
 /.emacs.d/recentf
 /.emacs.d/projectile-bookmarks.eld
+/gpgkeys
+/ssh.tar.gz.gpg
