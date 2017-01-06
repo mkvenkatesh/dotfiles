@@ -39,8 +39,14 @@
 (key-chord-define-global ",." 'counsel-find-file)
 (key-chord-define-global ";l" 'save-buffer)
 (key-chord-define-global ";k" 'kill-buffer)
-(key-chord-define-global ";m" 'multi-term-dedicated-toggle)
+(key-chord-define-global ";." 'multi-term-dedicated-toggle)
 (key-chord-define-global ";o" 'magit-status)
+(key-chord-define-global "`1" 'delete-other-windows)
+(key-chord-define-global "`2" 'winner-undo)
+
+
+;; enable winner-mode to undo/redo window configuration easily
+(winner-mode 1)
 
 
 ;; set frame title
@@ -460,7 +466,6 @@ If SUBMODE is not provided, use `LANG-mode' by default."
  '(delete-selection-mode t)
  '(electric-pair-mode t)
  '(electric-pair-preserve-balance nil)
- '(epa-pinentry-mode (quote loopback))
  '(flycheck-indication-mode nil)
  '(global-company-mode t)
  '(global-hl-line-mode t)
