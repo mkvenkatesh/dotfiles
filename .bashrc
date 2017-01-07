@@ -7,8 +7,8 @@ export PATH=/opt/oracle/instantclient_12_1:$PATH
 
 # Emacs customization
 export ALTERNATE_EDITOR="alternate-emacs"
-export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -n"
+export EDITOR="emacsclient"
+export VISUAL="emacsclient"
 alias kill_emacs_server='emacsclient -e "(kill-emacs)"'
 alias e='emacsclient -n'
 alias et='emacsclient -t'
