@@ -43,7 +43,7 @@
 (key-chord-define-global ";o" 'magit-status)
 (key-chord-define-global "`1" 'delete-other-windows)
 (key-chord-define-global "`2" 'winner-undo)
-(key-chord-define-global "p[" 'ace-window)
+(key-chord-define-global "qq" 'ace-window)
 
 
 ;; enable winner-mode to undo/redo window configuration easily
