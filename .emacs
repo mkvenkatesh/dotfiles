@@ -221,7 +221,6 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "s-$") 'ispell-word)
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "s-x s") 'tramp-term)
 (global-set-key (kbd "C-x C-b") 'ibuffer-other-window)
 
 
@@ -492,7 +491,7 @@ If SUBMODE is not provided, use `LANG-mode' by default."
  '(ns-pop-up-frames nil)
  '(package-selected-packages
    (quote
-	(key-chord py-autopep8 yaml-mode jekyll-modes mmm-mode ag counsel-projectile projectile imenu-anywhere flx counsel swiper tramp-term multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
+	(key-chord py-autopep8 yaml-mode jekyll-modes mmm-mode ag counsel-projectile projectile imenu-anywhere flx counsel swiper multi-term backup-walker web-mode web-beautify unfill undo-tree solarized-theme smooth-scrolling smart-mode-line reveal-in-osx-finder pbcopy neotree multiple-cursors markdown-mode magit js-comint flycheck expand-region exec-path-from-shell elpy company-web company-tern company-restclient ace-window ace-jump-mode)))
  '(projectile-completion-system (quote ivy))
  '(python-indent-guess-indent-offset-verbose nil)
  '(ring-bell-function (quote ignore))

@@ -133,7 +133,6 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * smooth-scrolling
 * swiper
 * tern
-* tramp-term
 * undo-tree
 * unfill
 * web-beautify
