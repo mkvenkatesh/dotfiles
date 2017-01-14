@@ -61,6 +61,7 @@
 ;; properly to Emacs windows app
 (when (display-graphic-p)
   (exec-path-from-shell-initialize))
+(exec-path-from-shell-copy-env "SQLPATH")
 
 
 ;; from emacs-redux. make use of recently opened files list

@@ -17,6 +17,7 @@ alias er="SUDO_EDITOR=\"emacsclient -n\" sudo -e"
 # Set environment vars for Oracle
 export ORACLE_HOME=/opt/oracle/instantclient_12_1
 export LD_LIBRARY_PATH=$ORACLE_HOME
+export SQLPATH=/Users/vmandala/.emacs.d/sqlplus
 
 # bash aliases
 alias ls='ls -GFh'
