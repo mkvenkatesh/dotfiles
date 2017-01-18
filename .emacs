@@ -38,7 +38,7 @@
 (key-chord-define-global ";'" 'ivy-switch-buffer)
 (key-chord-define-global ",." 'counsel-find-file)
 (key-chord-define-global ";l" 'save-buffer)
-(key-chord-define-global ";k" 'kill-buffer)
+(key-chord-define-global "'/" 'kill-buffer)
 (key-chord-define-global ";." 'multi-term-dedicated-toggle)
 (key-chord-define-global ";o" 'magit-status)
 (key-chord-define-global "`1" 'delete-other-windows)
