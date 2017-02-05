@@ -138,3 +138,13 @@ See [.emacs](https://github.com/mkvenkatesh/dotfiles/blob/master/.emacs)
 * web-beautify
 * web-mode
 * yasnippet
+
+## Visual Studio Code
+
+Create a symbolic link from Dropbox folder to VS Code settings folder.
+
+```bash
+$ ln -s ~/Dropbox/vscode/User ~/Library/Application\ Support/Code/User
+```
+
+Install the following npm packages: `yo`, `gulp` and `bower` for VS code.
