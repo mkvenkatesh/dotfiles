@@ -6,13 +6,13 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=/opt/oracle/instantclient_12_1:$PATH
 
 # Emacs customization
-export ALTERNATE_EDITOR="alternate-emacs"
-export EDITOR="emacsclient"
-export VISUAL="emacsclient"
-alias kill_emacs_server='emacsclient -e "(kill-emacs)"'
-alias e='emacsclient -n'
-alias et='emacsclient -t'
-alias er="SUDO_EDITOR=\"emacsclient -n\" sudo -e"
+export ALTERNATE_EDITOR="code"
+export EDITOR="code -w"
+export VISUAL="code"
+# alias kill_emacs_server='emacsclient -e "(kill-emacs)"'
+# alias e='emacsclient -n'
+# alias et='emacsclient -t'
+# alias er="SUDO_EDITOR=\"emacsclient -n\" sudo -e"
 
 # Set environment vars for Oracle
 export ORACLE_HOME=/opt/oracle/instantclient_12_1
@@ -38,7 +38,8 @@ rdp_asu() {
 alias rdpasu=rdp_asu
 
 # Set Bash Prompt Format: http://xta.github.io/HalloweenBash/
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+# export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[m\]\$ "
 
 # load rbenv init automatically
 eval "$(rbenv init -)"
