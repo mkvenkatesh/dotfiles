@@ -1,4 +1,4 @@
-# Set NVM (Node Version Manager)
+    # Set NVM (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
@@ -38,8 +38,7 @@ rdp_asu() {
 alias rdpasu=rdp_asu
 
 # Set Bash Prompt Format: http://xta.github.io/HalloweenBash/
-# export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[m\]\$ "
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\n\$ "
 
 # load rbenv init automatically
 eval "$(rbenv init -)"
@@ -55,3 +54,6 @@ complete -C '/usr/local/bin/aws_completer' aws
 
 # enable bash completion for password-store
 source /usr/local/etc/bash_completion.d/password-store
+
+# iterm2 shell integration script
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
