@@ -1,3 +1,13 @@
 // Place your key bindings in this file to overwrite the defaults
 [
+    {
+        "key": "alt+1",
+        "command": "workbench.action.terminal.focus",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+s",
+        "command": "python.execInTerminal",
+        "when": "editorTextFocus"
+    }
 ]

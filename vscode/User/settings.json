@@ -1,5 +1,17 @@
 // Place your settings in this file to overwrite the default settings
 {
     "window.openFilesInNewWindow": "off",
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "window.reopenFolders": "none",
+    "workbench.welcome.enabled": false,    
+    "extensions.autoUpdate": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.shellArgs.osx": [
+        "-l"
+    ],
+    "terminal.integrated.lineHeight": 1.4,
+    "terminal.integrated.cursorBlinking": true,
+    "editor.tabCompletion": true,
+    "editor.rulers": [80]
 }
