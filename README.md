@@ -148,3 +148,14 @@ $ ln -s ~/Dropbox/vscode/User ~/Library/Application\ Support/Code/User
 ```
 
 Install the following npm packages: `yo`, `gulp` and `bower` for VS code.
+
+### VS Code Extensions
+
+* HookyQR.beautify
+* Zignd.html-css-class-completion
+* abusaidm.html-snippets
+* dbaeumer.vscode-eslint
+* donjayamanne.githistory
+* donjayamanne.python
+* robertohuertasm.vscode-icons
+* xabikos.JavaScriptSnippets

@@ -23,3 +23,7 @@
 /.emacs.d/projectile-bookmarks.eld
 /gpgkeys
 /ssh.tar.gz.gpg
+/.vscode/
+/.gnupg/
+/.aws/
+/.ssh/
